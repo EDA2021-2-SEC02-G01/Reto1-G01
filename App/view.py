@@ -44,7 +44,13 @@ def printMenu():
     print("6- Transportar obras de un departamento")
     print("7- Proponer una nueva exposición en el museo")
 
-catalog = None
+gallery = None
+
+def initGallery():
+    return controller.initGallery()
+
+def loadGallery(gallery):
+    controller.loadGallery(gallery)
 
 """
 Menu principal
@@ -54,6 +60,10 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        gallery = initGallery()
+        loadGallery(gallery)
+        print("Artistas cargados:", lt.size(gallery["artists"]))
+        print("Obras cargadas: ", lt.size(gallery["artwork"]))
         
     elif int(inputs[0]) == 2:
         pass
