@@ -42,6 +42,7 @@ def loadData (gallery):
     Carga los datos de los archivos 
     """
     loadArtists(gallery)
+    loadArtworks(gallery)
 
 def loadArtists(gallery):
     """
@@ -51,8 +52,16 @@ def loadArtists(gallery):
     input_file = csv.DictReader(open(artistFile, encoding="utf-8"))
     for artist in input_file:
         model.addArtist()
+
 def loadArtworks(gallery):
-    pass
+    """
+    Carga los artworks de un archivo
+    """
+    artworksFile = cf.data_dir + "MoMA/Artworks-utf8-small.csv"
+    input_file = csv.DictReader(open(artworksFile,encoding="utf-8"))
+    for artwork in input_file:
+        model.addArtwork()
+
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
