@@ -51,7 +51,7 @@ def loadArtists(gallery):
     artistFile = cf.data_dir + "MoMA/Artists-utf8-small.csv"
     input_file = csv.DictReader(open(artistFile, encoding="utf-8"))
     for artist in input_file:
-        model.addArtist()
+        model.addArtist(gallery, artist)
 
 def loadArtworks(gallery):
     """
@@ -60,7 +60,7 @@ def loadArtworks(gallery):
     artworksFile = cf.data_dir + "MoMA/Artworks-utf8-small.csv"
     input_file = csv.DictReader(open(artworksFile,encoding="utf-8"))
     for artwork in input_file:
-        model.addArtwork()
+        model.addArtwork(gallery, artwork)
 
 # Funciones de ordenamiento
 
