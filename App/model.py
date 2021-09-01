@@ -44,28 +44,16 @@ def newGallery():
 # Funciones para agregar informacion al catalogo
 def addArtwork(gallery, artwork):
     lt.addLast(gallery["artwork"], artwork)
-    artist_id = artwork["ConstituentID"].split(",")
-    for artist in artist_id:
-        addArtist(gallery, artist.strip(), artwork)
+    
 
-def addArtist(gallery, artist_id, artwork):
-    all_artists = gallery["artists"]
-    posartist = lt.isPresent(all_artists, artist_id)
-    if posartist > 0:
-        artist = lt.getElement(all_artists, posartist)
-    else:
-        artist = newArtist(artist_id)
-        lt.addLast(all_artists, artist)
-    lt.addLast(artist["artwork"], artwork)
+def addArtist(gallery, artist):
+    lt.addLast(gallery["artists"], artist)
 
 
 # Funciones para creacion de datos
 
-def newArtist(artist_id):
-    artist = {"id":"","artwork":None}
-    artist["id"] = artist_id
-    artist["artwork"] = lt.newList()
-    return artist
+"""def newArtist(artist_info):
+    return artist_info"""
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una lista

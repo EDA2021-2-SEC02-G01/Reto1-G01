@@ -43,6 +43,7 @@ def printMenu():
     print("5- Clasificar las obras por nacionalidad de autor")
     print("6- Transportar obras de un departamento")
     print("7- Proponer una nueva exposición en el museo")
+    print("0- Salir")
 
 gallery = None
 
@@ -62,10 +63,21 @@ while True:
         print("Cargando información de los archivos ....")
         gallery = initGallery()
         loadGallery(gallery)
-        print("Artistas cargados:", lt.size(gallery["artists"]))
-        print("Obras cargadas: ", lt.size(gallery["artwork"]))
-        
-    elif int(inputs[0]) == 2:
+        size_artists = lt.size(gallery["artists"])
+        size_artworks = lt.size(gallery["artwork"])
+        print("Artistas cargados:",size_artists)
+        print("Obras cargadas: ", size_artworks)
+        print("Ultimos 3 artistas y obras: ")
+        for i in range(1,4):
+            print(f"\nArtista {i}")
+            objeto_1 = lt.getElement(gallery["artists"],size_artists-i)
+            for j in objeto_1:
+                print("{}: {}".format(j, objeto_1[j]))
+            print(f"\nObra {i}")
+            objeto_2 = lt.getElement(gallery["artwork"],size_artworks-i)
+            for k in objeto_2:
+                print("{}: {}".format(k, objeto_2[k]))
+    elif int(inputs[0]) == 0:
         pass
 
     else:
