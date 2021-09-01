@@ -37,7 +37,7 @@ def initGallery():
     gallery = model.newGallery()
     return gallery
 # Funciones para la carga de datos
-def loadData (gallery):
+def loadData(gallery):
     """
     Carga los datos de los archivos 
     """

@@ -36,11 +36,36 @@ los mismos.
 """
 
 # Construccion de modelos
-
+def newGallery():
+    gallery = {"artists":None,"artwork":None}
+    gallery["artists"] = lt.newList()
+    gallery["artwork"] = lt.newList()
+    return gallery
 # Funciones para agregar informacion al catalogo
+def addArtist(gallery, artwork):
+    lt.addLast(gallery["artwork"], artwork)
+    artist_id = artwork["ConstituentID"].split(",")
+    for artist in artist_id:
+        addArtwork(gallery, artist.strip(), artwork)
+
+def addArtwork(gallery, artist_id, artwork):
+    all_artists = gallery["artists"]
+    posartist = lt.isPresent(all_artists, artist_id)
+    if posartist > 0:
+        artist = lt.getElement(all_artists, posartist)
+    else:
+        artist = newArtist(artist_id)
+        lt.addLast(all_artists, artist)
+    lt.addLast(artist["artwork"], artwork)
+
 
 # Funciones para creacion de datos
 
+def newArtist(artist_id):
+    artist = {"id":"","artwork":None}
+    artist["id"] = artist_id
+    artist["artwork"] = lt.newList()
+    return artist
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una lista

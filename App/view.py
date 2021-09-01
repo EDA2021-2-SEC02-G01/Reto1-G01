@@ -50,7 +50,7 @@ def initGallery():
     return controller.initGallery()
 
 def loadGallery(gallery):
-    controller.loadGallery(gallery)
+    controller.loadData(gallery)
 
 """
 Menu principal
