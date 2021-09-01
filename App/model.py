@@ -37,18 +37,18 @@ los mismos.
 
 # Construccion de modelos
 def newGallery():
-    gallery = {"artists":None,"artwork":None}
-    gallery["artists"] = lt.newList()
+    gallery = {"artwork":None,"artists":None}
     gallery["artwork"] = lt.newList()
+    gallery["artists"] = lt.newList()
     return gallery
 # Funciones para agregar informacion al catalogo
-def addArtist(gallery, artwork):
+def addArtwork(gallery, artwork):
     lt.addLast(gallery["artwork"], artwork)
     artist_id = artwork["ConstituentID"].split(",")
     for artist in artist_id:
-        addArtwork(gallery, artist.strip(), artwork)
+        addArtist(gallery, artist.strip(), artwork)
 
-def addArtwork(gallery, artist_id, artwork):
+def addArtist(gallery, artist_id, artwork):
     all_artists = gallery["artists"]
     posartist = lt.isPresent(all_artists, artist_id)
     if posartist > 0:
