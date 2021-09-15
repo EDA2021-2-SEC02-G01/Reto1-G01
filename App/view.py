@@ -107,7 +107,7 @@ while True:
         opt = input("\nOpción seleccionada: ")
         result = controller.sortArtworks(gallery, int(size), opt)
         print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
-                                          str(result[0]))
+                                          str(round(result[0],2)))
 
         #printSorted(result[1])
 
