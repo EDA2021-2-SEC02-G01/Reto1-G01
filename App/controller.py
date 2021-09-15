@@ -30,11 +30,11 @@ El controlador se encarga de mediar entre la vista y el modelo.
 """
 
 # Inicialización del Catálogo de libros
-def initGallery():
+def initGallery(type):
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
-    gallery = model.newGallery()
+    gallery = model.newGallery(type)
     return gallery
 # Funciones para la carga de datos
 def loadData(gallery):
@@ -64,4 +64,6 @@ def loadArtworks(gallery):
 
 # Funciones de ordenamiento
 
+def sortArtworks(gallery, size, sort_type):
+    return model.sortArtworks(gallery, size, sort_type)
 # Funciones de consulta sobre el catálogo

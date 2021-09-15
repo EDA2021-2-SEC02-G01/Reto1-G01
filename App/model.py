@@ -25,10 +25,15 @@
  """
 
 
+from DISClib.DataStructures.arraylist import subList
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import quicksort as qu
+from DISClib.Algorithms.Sorting import mergesort as mg
+from DISClib.Algorithms.Sorting import insertionsort as ins
 assert cf
+import time 
 
 """
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
@@ -36,10 +41,10 @@ los mismos.
 """
 
 # Construccion de modelos
-def newGallery():
+def newGallery(type):
     gallery = {"artwork":None,"artists":None}
-    gallery["artwork"] = lt.newList()
-    gallery["artists"] = lt.newList()
+    gallery["artwork"] = lt.newList(type)
+    gallery["artists"] = lt.newList(type)
     return gallery
 # Funciones para agregar informacion al catalogo
 def addArtwork(gallery, artwork):
@@ -57,5 +62,22 @@ def addArtist(gallery, artist):
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una lista
+def cmpArtworkByDateAcquired(artwork1, artwork2):
+    return artwork1["DateAcquired"] < artwork2["DateAcquired"]
 
 # Funciones de ordenamiento
+def sortArtworks(gallery, size, sort_type):
+    sublist = lt.subList(gallery["artwork"],1,size)
+    ordenar = sublist.copy()
+    init_time = time.process_time()
+    if sort_type == "1":
+        sorted = sa.sort(ordenar, cmpArtworkByDateAcquired)
+    elif sort_type == "2":
+        sorted = qu.sort(ordenar, cmpArtworkByDateAcquired)
+    elif sort_type == "3":
+        sorted = mg.sort(ordenar, cmpArtworkByDateAcquired)
+    else:
+        sorted = ins.sort(ordenar, cmpArtworkByDateAcquired)
+    stop_time = time.process_time()
+    time_mseg = (stop_time - init_time)*1000
+    return time_mseg, sorted
