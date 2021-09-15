@@ -37,8 +37,8 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- Listar cronológicamente los artistas")
-    print("3- Listar cronológicamente las adquisiciones")
+    print("2- Listar cronológicamente las adquisiciones")
+    print("3- Listar cronológicamente los artistas")
     print("4- Clasificar las obras de un artista por técnica")
     print("5- Clasificar las obras por nacionalidad de autor")
     print("6- Transportar obras de un departamento")
@@ -47,12 +47,22 @@ def printMenu():
 
 gallery = None
 
-def initGallery():
-    return controller.initGallery()
+def initGallery(type):
+    return controller.initGallery(type)
 
 def loadGallery(gallery):
     controller.loadData(gallery)
 
+"""def printSorted(ord_gallery, sample_size=10):
+    size = lt.size(ord_gallery)
+    if size > sample_size:
+        print("Las primeras", sample_size, "obras de arte ordenados son:")
+        i = 1
+        while i <= sample_size:
+            artwork_1 = lt.getElement(ord_gallery,i)
+            for k in artwork_1:
+                print(f"{k}: {artwork_1[k]}")
+"""
 """
 Menu principal
 """
@@ -61,7 +71,14 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
-        gallery = initGallery()
+        print("\nSeleccione el tipo de lista con el que desea cargar el catálogo:")
+        print("\n1 - Array list\n2 - Linked list")
+        op = input("Ingrese la opción seleccionada: ")
+        if op == 1:
+            type = "ARRAY_LIST"
+        else:
+            type = "LINKED_LIST"
+        gallery = initGallery(type)
         loadGallery(gallery)
         size_artists = lt.size(gallery["artists"])
         size_artworks = lt.size(gallery["artwork"])
@@ -77,8 +94,22 @@ while True:
             objeto_2 = lt.getElement(gallery["artwork"],size_artworks-i)
             for k in objeto_2:
                 print("{}: {}".format(k, objeto_2[k]))
+
     elif int(inputs[0]) == 0:
-        pass
+        break
+    elif int(inputs[0]) == 2:
+        size = int(input("Indique tamaño de la muestra: "))
+        if size > lt.size(gallery["artwork"]):
+            print("\nTamaño de muestra inválido.")
+            continue
+        print("\nSeleccione el método de ordenamiento a utilizar:")
+        print("\n1 - Shellsort\n2 - Quicksort\n3 - Mergesort\n4 - Insertionsort")
+        opt = input("\nOpción seleccionada: ")
+        result = controller.sortArtworks(gallery, int(size), opt)
+        print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
+                                          str(result[0]))
+
+        #printSorted(result[1])
 
     else:
         sys.exit(0)
