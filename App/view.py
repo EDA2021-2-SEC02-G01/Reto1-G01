@@ -37,8 +37,8 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- Listar cronológicamente las adquisiciones")
-    print("3- Listar cronológicamente los artistas")
+    print("2- Listar cronológicamente los artistas")
+    print("3- Listar cronológicamente las adquisiciones")
     print("4- Clasificar las obras de un artista por técnica")
     print("5- Clasificar las obras por nacionalidad de autor")
     print("6- Transportar obras de un departamento")
@@ -98,6 +98,38 @@ while True:
     elif int(inputs[0]) == 0:
         break
     elif int(inputs[0]) == 2:
+        #TODO View Requerimiento 1
+        print("Busqueda de artistas por rango de años")
+        ai = input("Dijite el año inicial de la búsqueda: \n")
+        af = input("Dijite el año final de la busqueda: \n")
+        #Función en controller params : ai, af -> retorna [int,int,tuple(dict),tuple(dict)]
+        pass      
+    elif int(inputs[0]) == 3:
+        #TODO View Requerimiento 2
+        print("Busqueda de adquisiciones por rango de fecha")
+        fi = input("Dijite la fecha inicial de la búsqueda: <AAAA-MM-DD>\n")
+        ff = input("Dijite la fecha final de la busqueda <AAAA-MM-DD>: \n")
+        #Función en controller params : fi, ff -> retorna [int,int,tuple(dict),tuple(dict)]
+        pass         
+    elif int(inputs[0]) == 4:
+        #TODO View Requerimiento 3
+        print("Clasificación de obras de artista por técnica")
+        name = input("Dijite el nombre del artista: \n")
+        #Función en controller params: name -> retorna [int, dict, str, list[dict]]
+        pass       
+    elif int(inputs[0]) == 5:
+        #TODO View Requerimiento 4
+        pass       
+    elif int(inputs[0]) == 6:
+        #TODO View Requerimiento 5
+        print("Traslado de obras")
+        department = input("Dijite el nombre del departamento de dónde trasladar: \n")
+        #Función en controller params: department -> retorna [int, int, float, list[dict],list[dict]]
+        pass       
+    elif int(inputs[0])== 7:
+        #TODO View Requerimiento 6 BONO
+        pass
+    elif int(inputs[0]) == 3:
         size = int(input("Indique tamaño de la muestra: "))
         if size > lt.size(gallery["artwork"]):
             print("\nTamaño de muestra inválido.")
