@@ -29,13 +29,16 @@ import csv
 El controlador se encarga de mediar entre la vista y el modelo.
 """
 
-# Inicialización del Catálogo de libros
+# Inicialización del Catálogo de obras
 def initGallery(type):
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
     gallery = model.newGallery(type)
     return gallery
+
+def initArtists():
+    return model.ArtistNationGallery()
 # Funciones para la carga de datos
 def loadData(gallery):
     """
@@ -66,4 +69,15 @@ def loadArtworks(gallery):
 
 def sortArtworks(gallery, size, sort_type):
     return model.sortArtworks(gallery, size, sort_type)
+
+def sortArtist(gallery):
+    nations = initArtists()
+    for i in gallery["artwork"]:
+        model.sortArtist(gallery,nations,i)
+    return nations
+
+def best_artists(artist_nations):
+    return model.sortArtistsbyNation(artist_nations)
+
+    
 # Funciones de consulta sobre el catálogo

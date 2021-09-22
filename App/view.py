@@ -119,7 +119,19 @@ while True:
         pass       
     elif int(inputs[0]) == 5:
         #TODO View Requerimiento 4
-        pass       
+        artistas_pais = controller.sortArtist(gallery)
+        mejores = controller.best_artists(artistas_pais)
+        print("|\tPaís\t|\tCantidad artistas\t|")
+        for i in range(10):
+            elemento = lt.getElement(mejores,i)
+            print(f"|\t{elemento[0]}\t|\t{elemento[1]}\t|")
+        mejor = artistas_pais[mejores[0][0]]
+        print("""\tID\t|\tTitle\t|,\ttArtists\t|\tMedium\t|\tDate\t|\tDimensions\t|\tDepartment\t|
+        \tClasification\t|\tURL\t|""")
+        for i in range(3):
+            artista = lt.getElement(mejor,i)
+            print(artista)
+      
     elif int(inputs[0]) == 6:
         #TODO View Requerimiento 5
         print("Traslado de obras")

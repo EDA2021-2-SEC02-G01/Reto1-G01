@@ -46,6 +46,11 @@ def newGallery(type):
     gallery["artwork"] = lt.newList(type)
     gallery["artists"] = lt.newList(type)
     return gallery
+
+def ArtistNationGallery():
+    return {}
+
+
 # Funciones para agregar informacion al catalogo
 def addArtwork(gallery, artwork):
     lt.addLast(gallery["artwork"], artwork)
@@ -65,6 +70,11 @@ def addArtist(gallery, artist):
 def cmpArtworkByDateAcquired(artwork1, artwork2):
     return artwork1["DateAcquired"] < artwork2["DateAcquired"]
 
+def cmpNationsByArtists(nation1,nation2):
+    return nation1[1] < nation2[1]
+
+
+
 # Funciones de ordenamiento
 def sortArtworks(gallery, size, sort_type):
     sublist = lt.subList(gallery["artwork"],1,size)
@@ -81,3 +91,22 @@ def sortArtworks(gallery, size, sort_type):
     stop_time = time.process_time()
     time_mseg = (stop_time - init_time)*1000
     return time_mseg, sorted
+
+def sortArtist(gallery,artists,artwork):
+    art_artists = artwork["ConstituentID"]
+    for i in art_artists:
+        for j in gallery["artists"]:
+            if j["ConstituentID"] == i:
+                artist = j
+                break
+        if artist["Nationality"] not in artists:
+            artists[artist["Nationality"]] = lt.newList("ARRAYLIST")
+        lt.addLast(artists[artist["Nationality"]],artwork)
+
+def sortArtistsbyNation(sorted_artists):
+    sorted = lt.newList("ARRAY_LIST")
+    for i in sorted_artists:
+        lt.addLast(sorted,(i,lt.size(i)))
+        mg.sort(sorted,cmpNationsByArtists)
+    return sorted
+    
