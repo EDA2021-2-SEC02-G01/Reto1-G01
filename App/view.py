@@ -113,10 +113,25 @@ while True:
         pass         
     elif int(inputs[0]) == 4:
         #TODO View Requerimiento 3
-        print("Clasificación de obras de artista por técnica")
-        name = input("Dijite el nombre del artista: \n")
-        #Función en controller params: name -> retorna [int, dict, str, list[dict]]
-        pass       
+        try:
+            print("="*8+"Clasificación de obras de artista por técnica"+"="*8)
+            name = input("Dijite el nombre del artista: \n")
+            data = ["A","B","C","D"] #Función en controller params: name -> retorna [int, int,str,list(dict)]
+            works = data[3]
+            print("="*8+"Examinar el trabajo del artista: "+name+"="*8)
+            print("{} con MoMA ID {} tiene {} obras a su nombre en el museo.".format(name,data[0],data[1]))
+            print("Su técnica más utilizada es {} y se presentan a continuación ({}):".format(data[2],len(works)))
+            separator = "-"*70
+            table_format = "| {} | {} | {} | {} |"
+            print(separator)
+            print(table_format.format("Titulo","Fecha de la obra","Medio","Dimensiones"))
+            for work in works:
+                print(separator)
+                print(table_format.format(work[0],work[1],work[2],work[3]))
+                print(separator)
+        except:
+            print("Datos ingresados incorrectamente (¿habrá ingresado correctamente el nombre?) ")
+
     elif int(inputs[0]) == 5:
         #TODO View Requerimiento 4
         artistas_pais = controller.sortArtist(gallery)

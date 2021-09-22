@@ -39,7 +39,9 @@ def initGallery(type):
 
 def initArtists():
     return model.ArtistNationGallery()
+
 # Funciones para la carga de datos
+
 def loadData(gallery):
     """
     Carga los datos de los archivos 
