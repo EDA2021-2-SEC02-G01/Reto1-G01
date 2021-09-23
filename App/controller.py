@@ -73,17 +73,38 @@ def loadArtworks(gallery):
 def sortArtworks(gallery, size, sort_type):
     return model.sortArtworks(gallery, size, sort_type)
 
-def sortArtist(gallery):
+def sortArtist(gallery,sorted_artists):
     nations = initArtists()
     for i in range(lt.size(gallery["artwork"])):
-        model.sortArtist(gallery,nations,lt.getElement(gallery["artwork"],i))
+        model.sortArtist(gallery,nations,lt.getElement(gallery["artwork"],i),sorted_artists)
     return nations
 
 def best_artists(artist_nations):
     return model.sortArtistsbyNation(artist_nations)
+
+def sortByArtistID(gallery):
+    return model.sortByArtistID(gallery)
+
+def sortByArtistName(gallery):
+    return model.sortByArtistName(gallery)
+
+def encontrar_ID(artist_sorted,value):
+    return model.busqueda_binaria(0,lt.size(artist_sorted)-1,artist_sorted,value)
+    
 
     
 # Funciones de consulta sobre el catálogo
 
 def requerimiento_1(gallery,ai,af):
     return model.requerimiento_1(gallery,ai,af)
+def requerimiento_2(gallery,fi,ff):
+    return model.requerimiento_2(gallery,fi,ff)
+def requerimiento_3(gallery,name,sorted_artists):
+    return model.requerimiento_3(gallery,name,sorted_artists)
+def contar_tecnica(data):
+    return model.contar_tecnica(data)
+def obras_departamento(gallery, department):
+    return model.obras_departamento(gallery,department)
+def estimar_valor(obras):
+    return model.estimar_valor(obras)
+
