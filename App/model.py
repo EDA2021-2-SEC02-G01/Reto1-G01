@@ -71,7 +71,7 @@ def cmpArtworkByDateAcquired(artwork1, artwork2):
     return artwork1["DateAcquired"] < artwork2["DateAcquired"]
 
 def cmpNationsByArtists(nation1,nation2):
-    return nation1[1] < nation2[1]
+    return nation1[1] > nation2[1]
 
 
 
@@ -94,19 +94,28 @@ def sortArtworks(gallery, size, sort_type):
 
 def sortArtist(gallery,artists,artwork):
     art_artists = artwork["ConstituentID"]
+    if not "," in art_artists:
+        art_artists = art_artists[1:len(art_artists)-1]
+        art_artists = [art_artists]
+    else:
+        art_artists = art_artists.split(",")
+        art_artists[0] = art_artists[0][1:]
+        art_artists[len(art_artists)-1] = art_artists[len(art_artists)-1][:len(art_artists[len(art_artists)-1])-2]
     for i in art_artists:
-        for j in gallery["artists"]:
-            if j["ConstituentID"] == i:
-                artist = j
+        for j in range(lt.size(gallery["artists"])):
+            actual = lt.getElement(gallery["artists"],j)
+            autores = actual["ConstituentID"]
+            if autores == i:
+                artist = actual
                 break
         if artist["Nationality"] not in artists:
             artists[artist["Nationality"]] = lt.newList("ARRAYLIST")
         lt.addLast(artists[artist["Nationality"]],artwork)
 
+
 def sortArtistsbyNation(sorted_artists):
     sorted = lt.newList("ARRAY_LIST")
     for i in sorted_artists:
-        lt.addLast(sorted,(i,lt.size(i)))
-        mg.sort(sorted,cmpNationsByArtists)
-    return sorted
+        lt.addLast(sorted,(i,lt.size(sorted_artists[i])))
+    return mg.sort(sorted,cmpNationsByArtists)
     

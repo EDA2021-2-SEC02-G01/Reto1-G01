@@ -120,22 +120,27 @@ while True:
     elif int(inputs[0]) == 5:
         #TODO View Requerimiento 4
         artistas_pais = controller.sortArtist(gallery)
+        print("\nObras catalogadas correctamente...")
         mejores = controller.best_artists(artistas_pais)
-        print("|\tPaís\t|\tCantidad artistas\t|")
+        print("Los países con más obras según nacionalidad de su artista son:\n")
+        print("País\t\tCantidad artistas")
         for i in range(10):
             elemento = lt.getElement(mejores,i)
-            print(f"|\t{elemento[0]}\t|\t{elemento[1]}\t|")
-        mejor = artistas_pais[mejores[0][0]]
-        print("""\tID\t|\tTitle\t|,\ttArtists\t|\tMedium\t|\tDate\t|\tDimensions\t|\tDepartment\t|
-        \tClasification\t|\tURL\t|""")
+            print(f"{elemento[0]}\t\t{elemento[1]}")
+        mejor = lt.getElement(mejores,1)[0]
+        print(f"Las 3 primeras y últimas obras de autores {mejor} son:\n")
+        print("""\tID\t|\tTitle\t|\tMedium\t|\tDate\t|\tDimensions\t|\tDepartment\t|
+        \tClasification""")
         for i in range(3):
-            artista = lt.getElement(mejor,i)
-            print(artista)
-      
+            actual = lt.getElement(artistas_pais[mejor],i)
+            print(actual["ObjectID"],"\t",actual["Title"],"\t",actual["Medium"],"\t",actual["Date"],"\t",actual["Department"],"\t",actual["Classification"])
+        for i in range(3):
+            actual = lt.removeLast(artistas_pais[mejor])
+            print(actual["ObjectID"],"\t",actual["Title"],"\t",actual["Medium"],"\t",actual["Date"],"\t",actual["Department"],"\t",actual["Classification"])
     elif int(inputs[0]) == 6:
         #TODO View Requerimiento 5
         print("Traslado de obras")
-        department = input("Dijite el nombre del departamento de dónde trasladar: \n")
+        department = input("Digite el nombre del departamento de dónde trasladar: \n")
         #Función en controller params: department -> retorna [int, int, float, list[dict],list[dict]]
         pass       
     elif int(inputs[0])== 7:
