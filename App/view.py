@@ -220,8 +220,38 @@ while True:
         obras_departamento = controller.obras_departamento(gallery,department)
         print(f"\nHay un total de {lt.size(obras_departamento)} obras para transportar")
         estimado = controller.estimar_valor(obras_departamento)
+        print(f"\nEl costo estimado de transporte es de {estimado}")
+        obras_antiguas = controller.obras_antiguas(obras_departamento)
+        print("Las 5 obras más antiguas a transportar son:\n")
+        table_format = "| {} | {} | {} | {} |"
+        separator = "-"*70
+        print(separator)
+        print(table_format.format("Titulo","Fecha de la obra","Medio","Dimensiones"))
+        for i in range(5):
+            actual = lt.getElement(obras_antiguas,i)
+            print(separator)
+            print(table_format.format(actual["Title"],actual["Date"],actual["Medium"],actual["Dimensions"]))
+            print(separator)
         #Función en controller params: department -> retorna [int, int, float, list[dict],list[dict]]
-        pass       
+        obras_costosas = controller.obras_costosas(obras_departamento)
+        print("Las 5 obras más costosas a transportar son:\n")
+        table_format = "| {} | {} | {} | {} | {} | {} | {} |"
+        print(separator)
+        print(table_format.format("Titulo","Artista","Clasificacion","Fecha","Medio","Dimensiones","Costo transporte"))
+        for i in range(5):
+            actual = lt.getElement(obras_antiguas,i)
+            print(separator)
+            print(table_format.format(actual["Title"],actual["Date"],actual["Medium"],actual["Dimensions"]))
+            print(separator)
+        op = input(f"Hay {lt.size(obras_departamento)} obras a ser transportadas, ¿desea visualizarlas?(Y/N): ")
+        if op.lower() == "y":
+            for i in range(lt.size(obras_departamento)):
+                actual = lt.getElement(obras_departamento,i)
+                print(separator)
+                print(table_format.format(actual["Title"],actual["ConstituentID"],actual["Classification"],actual["Date"],actual["Medium"],actual["Dimensions"],actual["cost"]))
+                print(separator)
+        
+              
     elif int(inputs[0])== 7:
         #TODO View Requerimiento 6 BONO
         pass

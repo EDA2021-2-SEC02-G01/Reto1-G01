@@ -153,7 +153,11 @@ def cmpArtistByID(artist_1,artist_2):
 
 def cmpArtistByName(artist_1,artist_2):
     return artist_1["DisplayName"] > artist_2["DisplayName"]
+def cmpArtworkByAge(artwork_1,artwork_2):
+    return artwork_1["Date"]>artwork_2["Date"]
 
+def cmpArtworkByCost(costo_1,costo_2):
+    return costo_1["cost"]>costo_2["cost"]
 
 
 # Funciones de ordenamiento
@@ -238,6 +242,35 @@ def sortArtistsbyNation(sorted_artists):
     return mg.sort(sorted,cmpNationsByArtists)
 
 
+def añadir_costo(obra):
+    valores = []
+    try:
+        dimensiones = obra["Dimensions"]
+        dimensiones = dimensiones.split("x")
+        dimensiones[0] = dimensiones[0].strip()[1:]
+        dimensiones[1] = dimensiones[1].strip().replace("cm","")
+        valores.append(float(dimensiones[0])*float(dimensiones[1])*72)
+    except:
+        pass
+    try:
+        peso = obra["Weight (kg)"]
+        valores.append(float(peso)*72)
+    except:
+        pass
+    try:
+        dimensiones = [obra["Height (cm)"],obra["Length (cm)"],obra["Width (cm)"]]
+        vol = 1
+        for i in dimensiones:
+            vol *= float(i)
+        valores.append(vol * 72)
+    except:
+        pass
+    if len(valores) == 0:
+        valor = 46
+    else:
+        valor = max(valores)
+    obra["cost"] = valor
+
 def estimar_valor(obras):
     valor = 0
     for i in range(lt.size(obras)):
@@ -264,4 +297,24 @@ def estimar_valor(obras):
             valores.append(vol * 72)
         except:
             pass
+        if len(valores) == 0:
+            valor += 46
+        else:
+            valor += max(valores)
+    return valor
         
+def obras_antiguas(departamento):
+    sublista = lt.subList(departamento,1,lt.size(departamento))
+    a_ordenar = sublista.copy()
+    sorted = sa.sort(a_ordenar, cmpArtworkByAge)
+    return sorted
+
+def obras_costosas(departamento):
+    sublista = lt.subList(departamento,1,lt.size(departamento))
+    a_ordenar = sublista.copy()
+    for i in range(lt.size(a_ordenar)):
+        actual = lt.getElement(a_ordenar,i)
+        añadir_costo(actual)
+    sorted = sa.sort(a_ordenar, cmpArtworkByCost)
+    return sorted
+

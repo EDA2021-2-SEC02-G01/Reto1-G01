@@ -107,4 +107,8 @@ def obras_departamento(gallery, department):
     return model.obras_departamento(gallery,department)
 def estimar_valor(obras):
     return model.estimar_valor(obras)
+def obras_antiguas(departamento):
+    return model.obras_antiguas(departamento)
+def obras_costosas(departamento):
+    return model.obras_costosas(departamento)
 
