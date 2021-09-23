@@ -100,15 +100,18 @@ while True:
     elif int(inputs[0]) == 2:
         #TODO View Requerimiento 1
         print("Busqueda de artistas por rango de años")
-        ai = input("Dijite el año inicial de la búsqueda: \n")
-        af = input("Dijite el año final de la busqueda: \n")
+        ai = input("Digite el año inicial de la búsqueda: \n")
+        af = input("Digite el año final de la busqueda: \n")
+        lista = controller.requerimiento_1(gallery,ai,af)
+        print(f"Hay {lt.size(lista)} artistas nacidos en el rango {ai}-{af}")
+        
         #Función en controller params : ai, af -> retorna [int,int,tuple(dict),tuple(dict)]
         pass      
     elif int(inputs[0]) == 3:
         #TODO View Requerimiento 2
         print("Busqueda de adquisiciones por rango de fecha")
-        fi = input("Dijite la fecha inicial de la búsqueda: <AAAA-MM-DD>\n")
-        ff = input("Dijite la fecha final de la busqueda <AAAA-MM-DD>: \n")
+        fi = input("Digite la fecha inicial de la búsqueda: <AAAA-MM-DD>\n")
+        ff = input("Digite la fecha final de la busqueda <AAAA-MM-DD>: \n")
         #Función en controller params : fi, ff -> retorna [int,int,tuple(dict),tuple(dict)]
         pass         
     elif int(inputs[0]) == 4:

@@ -84,3 +84,6 @@ def best_artists(artist_nations):
 
     
 # Funciones de consulta sobre el catálogo
+
+def requerimiento_1(gallery,ai,af):
+    return model.requerimiento_1(gallery,ai,af)

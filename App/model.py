@@ -65,6 +65,13 @@ def addArtist(gallery, artist):
 """def newArtist(artist_info):
     return artist_info"""
 # Funciones de consulta
+def requerimiento_1(gallery,ai,af):
+    nueva = lt.newList("ARRAY_LIST")
+    for i in range(lt.size(gallery["artists"])):
+        actual = lt.getElement(gallery["artists"],i)
+        if ai<=actual["BeginDate"]<=af:
+            lt.addLast(nueva,actual)
+    return nueva
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 def cmpArtworkByDateAcquired(artwork1, artwork2):
