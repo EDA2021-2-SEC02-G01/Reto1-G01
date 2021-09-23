@@ -239,7 +239,7 @@ while True:
         print(separator)
         print(table_format.format("Titulo","Artista","Clasificacion","Fecha","Medio","Dimensiones","Costo transporte"))
         for i in range(5):
-            actual = lt.getElement(obras_antiguas,i)
+            actual = lt.getElement(obras_costosas,i)
             print(separator)
             print(table_format.format(actual["Title"],actual["Date"],actual["Medium"],actual["Dimensions"]))
             print(separator)
